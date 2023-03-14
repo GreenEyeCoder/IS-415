@@ -20,11 +20,11 @@ player_health = 100
 def get_current_position():
     try:
         if os.path.isfile(road_file) == False:
-            with open(road_file, "w") as f:
+            with open(road_file, 'w') as f:
                 f.write("X,,,,,,,,,")
                 return 1
         else:
-            with open(road_file, "r") as f:
+            with open(road_file, 'r') as f:
                 reader = csv.reader(f)
                 for row in reader:
                     if "X" in row:
