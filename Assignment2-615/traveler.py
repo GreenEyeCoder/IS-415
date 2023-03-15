@@ -8,13 +8,7 @@ import random
 road_file = "road.csv"
 health_file = "health"
 inventory_file = "inventory"
-
-# initialize player's health and inventory
-''' Global variables '''
-double_movement = False
-potion_available = True
-player_health = 100
-
+potion_available = "potion_avilable"
 
 # define function to retrieve current position
 def get_current_position():
@@ -40,6 +34,26 @@ def get_current_position():
         print("An error occurred:", e)
         return 1  # Return a default value on error
 
+def get_doubleMovement():
+    try:
+        with open(road_file, 'r') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    if "XX" in row:
+                        return (True)
+                    else:
+                        return (False)
+    except FileNotFoundError:
+        print("The file does not exist.")
+        return 1  # Return a default value on error
+    except PermissionError:
+        print("You don't have permission to access the file.")
+        return 1  # Return a default value on error
+    except Exception as e:
+        print("An error occurred:", e)
+        return 1  # Return a default value on error
+
+        
 
 def update_position(steps):
     new_position = get_current_position() + steps
@@ -96,10 +110,26 @@ def roll_dice():
     die = random.randint(1, 6)
     return die
 
+def potion_available():
+    try:
+        if os.path.isfile(potion_available) == False:
+            with open(inventory_file, 'w') as f:
+                f.write(str(1))
+                return 0
+        else:
+            with open(inventory_file, 'r') as f:
+                return int(f.read())
+    except FileNotFoundError:
+        print("The file does not exist.")
+    except PermissionError:
+        print("You don't have permission to access the file.")
+    except Exception as e:
+        print("An error occurred:", e)
 
 def consume_potion():
-    global potion_available
-    global player_health
+
+    potion_available = potion_available()
+    player_health = get_current_health()
 
     if potion_available:
         player_health += 70
@@ -135,7 +165,8 @@ def update_inventory(potion_available):
 
 '''Create Road Map'''
 def roadMap(position):
-    global double_movement
+
+    double_movement = get_doubleMovement()
     gameMap = []
     for steps in range(10):
         if steps == position - 1:
@@ -160,21 +191,21 @@ def dice_outcomes(die):
         return outcomes[die]
 
 def getCurrentHealthStatus():
-    global player_health
+    
     player_health = get_current_health()
     print(f'Your current health is :{player_health}')
 
 def gameStatus():
     getCurrentHealthStatus()
-    global double_movement
+    double_movement = get_doubleMovement()
     position = get_current_position() 
     myMap = roadMap(position)
     print(*myMap,sep=' ')
 
 '''define the main game loop'''
 def game_loop():
-    global double_movement
-    global player_health
+    double_movement = get_doubleMovement()
+    player_health = get_current_health()
     '''Starting game message'''
     
 
