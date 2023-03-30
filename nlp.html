@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>NLP</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1>NLP with help of Bard</h1>
+  <p>code</p> 
+</div>
+  
+<div class="container">
+	<h3>set up the environment</h3>
+	  <ol>
+	  <li>Install the following packages:<li>
+		<ul>
+			<li>spaCy</li>
+			<li>NLTK</li>
+			<li>gensim</li>
+			<li>scikit-learn</li>
+		</ul>
+		<li>Create a Python virtual environment for your natural language processing projects.</li>
+		<li>Install the following Python libraries into your virtual environment:</li>
+		<ul>
+				<li>spaCy</li>
+				<li>NLTK</li>
+				<li>gensim</li>
+				<li>scikit-learn</li>
+			</ul>
+		<li>Import the necessary modules into your Python code.</li>
+		<li>Start experimenting with natural language processing!</li>
+      <h3>Example</h3>
+      <p>Here is an example of how to import the necessary modules into your Python code:</p>
+      <pre><code class="language-python">import spacy
+import nltk
+import gensim
+import scikit-learn</code></pre>
+		<p>Here is an example of how to use spaCy to tokenize text:</p>
+		<pre><code class="language-python"># Create a spaCy English language model
+nlp = spacy.load("en_core_web_sm")
+
+# Tokenize a sentence
+tokens = nlp(“The quick brown fox jumps over the lazy dog.”)</code></pre>
+		<p>Here is an example of how to use NLTK to tokenize text:</p>
+		<pre><code class="language-python"># Import the NLTK library
+from nltk import word_tokenize
+
+# Tokenize a sentence
+tokens = word_tokenize("The quick brown fox jumps over the lazy dog.")</code></pre>
+      <h3>How to use gensim</h3>        
+      <p>Here is an example of how to use gensim to build a word embedding model:</p>
+      <pre><code class="language-python"># Import the gensim library
+import gensim
+
+# Create a word embedding model
+model = gensim.models.Word2Vec(corpus, size=300)
+
+# Get the embedding for a word
+embedding = model.wv[“dog”]</code></pre>
+		<p>Here is an example of how to use scikit-learn to train a natural language processing model:</p>
+		<pre><code class="language-python"># Import the scikit-learn library
+import scikit-learn
+
+# Create a training set
+X = [“The quick brown fox jumps over the lazy dog.”, “The dog ate the bone.”]
+y = [“positive”, “negative”]
+
+# Train a naive Bayes classifier
+model = scikit-learn.naive_bayes.NaiveBayes()
+model.fit(X, y)
+
+# Make a prediction
+prediction = model.predict([“The dog ate the bone.”])</code></pre>
+</div>
+
+</body>
+</html>
